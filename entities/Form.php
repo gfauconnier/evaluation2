@@ -26,19 +26,28 @@ class Form {
     return $this->form;
   }
 
-// adds an input text or submit
+// adds an input text
   public function addInputText($name, $cssclasses='', $value='', $placeholder='')
   {
-    $this->form .= '<div class="newVehicleFormDiv">';
+    $this->form .= '<div class="">';
     $this->form .= '<label for="'.$name.'" class="col-9 col-md-3">'.ucfirst($name).' : </label>';
     $this->form .= '<input type="text" id="'.$name.'" name ="'.$name.'" value="'.$value.'" class="'.$cssclasses.'" placeholder="'.$placeholder.'" required>';
     $this->form .= '</div>';
   }
 
+  // adds an input password
+    public function addInputPassword($name, $cssclasses='')
+    {
+      $this->form .= '<div class="">';
+      $this->form .= '<label for="'.$name.'" class="col-9 col-md-3">Password : </label>';
+      $this->form .= '<input type="password" id="'.$name.'" name ="'.$name.'" value="'.$value.'" class="'.$cssclasses.'" placeholder="Password" required>';
+      $this->form .= '</div>';
+    }
+
 // adds a select + options
   public function addSelect($name, array $options, $cssclasses='')
   {
-    $this->form .= '<div class="newVehicleFormDiv"><label for="'.$name.'" class="col-3">'.ucfirst($name).' : </label><select id="'.$name.'" name="'.$name.'" class="'.$cssclasses.'">';
+    $this->form .= '<div class=""><label for="'.$name.'" class="col-3">'.ucfirst($name).' : </label><select id="'.$name.'" name="'.$name.'" class="'.$cssclasses.'">';
     foreach ($options as $option) {
       $this->form .= '<option value="'.$option.'">'.ucfirst($option).'</option>';
     }
