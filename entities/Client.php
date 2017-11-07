@@ -1,6 +1,7 @@
 <?php
 
 class Client {
+
   protected $id_client;
   protected $f_name;
   protected $l_name;
@@ -14,7 +15,6 @@ use Hydrate;
   {
     $this->hydrate($data);
   }
-
 
 // GETTERS AND SETTERS
     /**
@@ -34,7 +34,10 @@ use Hydrate;
     */
     public function setId_client($id_client)
     {
-      $this->id_client = $id_client;
+      $id_client = (int) $id_client;
+      if (is_int($id_client) && $id_client > 0) {
+        $this->id_client = $id_client;
+      }
     }
 
     /**
@@ -54,7 +57,9 @@ use Hydrate;
     */
     public function setF_name($f_name)
     {
-      $this->f_name = $f_name;
+      if(strlen($f_name) <= 30 && strlen($f_name) > 0) {
+        $this->f_name = $f_name;
+      }
     }
 
     /**
@@ -62,7 +67,7 @@ use Hydrate;
      *
      * @return mixed
      */
-    public function getLName()
+    public function getL_name()
     {
         return $this->l_name;
     }
@@ -72,9 +77,11 @@ use Hydrate;
     * @param mixed l_name
     *
     */
-    public function setLName($l_name)
+    public function setL_name($l_name)
     {
-      $this->l_name = $l_name;
+      if(strlen($l_name) <= 30 && strlen($l_name) > 0) {
+        $this->l_name = $l_name;
+      }
     }
 
     /**
@@ -94,7 +101,9 @@ use Hydrate;
     */
     public function setUser_name($user_name)
     {
-      $this->user_name = $user_name;
+      if(strlen($user_name) <= 20 && strlen($user_name) > 0) {
+        $this->user_name = $user_name;
+      }
     }
 
     /**
@@ -114,6 +123,9 @@ use Hydrate;
     */
     public function setPassword($password)
     {
-      $this->password = $password;
+      if(strlen($password) <= 50 && strlen($password) > 0) {
+        $this->password = $password;
+      }
     }
+
   }
