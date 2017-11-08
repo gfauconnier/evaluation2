@@ -123,7 +123,7 @@ use Hydrate;
     */
     public function setPassword($password)
     {
-      if(strlen($password) <= 20 && strlen($password) > 0 && preg_match('#^[a-zA-Z0-9]*$#', $password)) {
+      if(strlen($password) <= 100 && strlen($password) > 0) {
         $this->password = $password;
       }
     }
