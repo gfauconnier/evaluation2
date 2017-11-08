@@ -1,4 +1,5 @@
 <?php
+
 class Form {
   protected $form;
 
@@ -27,10 +28,10 @@ class Form {
   }
 
 // adds an input text
-  public function addInputText($name, $cssclasses='', $value='', $placeholder='')
+  public function addInputText($labelname, $name, $cssclasses='', $value='', $placeholder='')
   {
     $this->form .= '<div class="">';
-    $this->form .= '<label for="'.$name.'" class="col-9 col-md-3">'.ucfirst($name).' : </label>';
+    $this->form .= '<label for="'.$name.'" class="col-9 col-md-3">'.ucfirst($labelname).' : </label>';
     $this->form .= '<input type="text" id="'.$name.'" name ="'.$name.'" value="'.$value.'" class="'.$cssclasses.'" placeholder="'.$placeholder.'" required>';
     $this->form .= '</div>';
   }
@@ -40,7 +41,7 @@ class Form {
     {
       $this->form .= '<div class="">';
       $this->form .= '<label for="'.$name.'" class="col-9 col-md-3">Password : </label>';
-      $this->form .= '<input type="password" id="'.$name.'" name ="'.$name.'" value="'.$value.'" class="'.$cssclasses.'" placeholder="Password" required>';
+      $this->form .= '<input type="password" id="'.$name.'" name ="'.$name.'" class="'.$cssclasses.'" placeholder="Only alphanumeric" required>';
       $this->form .= '</div>';
     }
 

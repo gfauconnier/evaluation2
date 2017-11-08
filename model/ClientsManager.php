@@ -20,14 +20,30 @@ class ClientsManager {
   public function createClient(Client $client)
   {
     if (!$this->clientExists($client)) {
-      $query = $this->_db->prepare('INSERT INTO clients (f_name, l_name, user_name, password) VALUES (:f_name, :l_name, :user_name, :password)');
-      $query->bindValue(':f_name', $client->getF_name());
-      $query->bindValue(':l_name', $client->getL_name());
-      $query->bindValue(':user_name', $client->getUser_name());
-      $query->bindValue(':password', $client->getPassword());
-      $query->execute();
-      return 'Client created';
+
+      try {
+
+        $this->_db->beginTransaction();
+
+        $query = $this->_db->prepare('INSERT INTO clients (f_name, l_name, user_name, password) VALUES (:f_name, :l_name, :user_name, :password)');
+
+        $query->bindValue(':f_name', $client->getF_name(), PDO::PARAM_STR);
+        $query->bindValue(':l_name', $client->getL_name(), PDO::PARAM_STR);
+        $query->bindValue(':user_name', $client->getUser_name(), PDO::PARAM_STR);
+        $query->bindValue(':password', $client->getPassword(), PDO::PARAM_STR);
+        $query->execute();
+
+        $this->_db->commit();
+        
+        return 'Client created';
+      }
+      catch(Exception $e) {
+        $this->_db->rollback();
+        return 'Error while trying to create client';
+      }
+
     }
+
     return 'This username is already in use';
   }
 

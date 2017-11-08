@@ -57,7 +57,7 @@ use Hydrate;
     */
     public function setF_name($f_name)
     {
-      if(strlen($f_name) <= 30 && strlen($f_name) > 0) {
+      if(strlen($f_name) <= 30 && strlen($f_name) > 0 && preg_match('#^[a-zA-Z]*$#', $f_name)) {
         $this->f_name = $f_name;
       }
     }
@@ -79,7 +79,7 @@ use Hydrate;
     */
     public function setL_name($l_name)
     {
-      if(strlen($l_name) <= 30 && strlen($l_name) > 0) {
+      if(strlen($l_name) <= 30 && strlen($l_name) > 0 && preg_match('#^[a-zA-Z]*$#', $l_name)) {
         $this->l_name = $l_name;
       }
     }
@@ -101,7 +101,7 @@ use Hydrate;
     */
     public function setUser_name($user_name)
     {
-      if(strlen($user_name) <= 20 && strlen($user_name) > 0) {
+      if(strlen($user_name) <= 20 && strlen($user_name) > 0 && preg_match('#^[a-zA-Z0-9]*$#', $user_name)) {
         $this->user_name = $user_name;
       }
     }
@@ -123,7 +123,7 @@ use Hydrate;
     */
     public function setPassword($password)
     {
-      if(strlen($password) <= 50 && strlen($password) > 0) {
+      if(strlen($password) <= 20 && strlen($password) > 0 && preg_match('#^[a-zA-Z0-9]*$#', $password)) {
         $this->password = $password;
       }
     }
