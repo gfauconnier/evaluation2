@@ -34,7 +34,7 @@ class ClientsManager {
         $query->execute();
 
         $this->_db->commit();
-        
+
         return 'Client created';
       }
       catch(Exception $e) {
@@ -51,7 +51,7 @@ class ClientsManager {
   public function getClient(Client $client)
   {
     if ($this->clientExists($client)) {
-      $query = $this->_db->query('SELECT * FROM clients WHERE user_name = '.$client->getUser_name());
+      $query = $this->_db->query('SELECT * FROM clients WHERE user_name = \''.$client->getUser_name().'\'');
       $data = $query->fetch(PDO::FETCH_ASSOC);
       $client->hydrate($data);
       return $client;
