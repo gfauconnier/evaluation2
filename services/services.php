@@ -1,6 +1,6 @@
 <?php
 require 'sanitize.php';
 require 'Hydrate.php';
-require 'connection.php';
+require 'disconnection.php';
 
 require 'autoloader.php';
