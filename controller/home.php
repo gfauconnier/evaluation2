@@ -7,7 +7,15 @@ if(isset($_POST['disconnect'])) {
 }
 
 if(isset($_POST['connect'], $_POST['user_name'], $_POST['password']) && !empty($_POST['user_name']) && !empty($_POST['password'])) {
-  connection($_POST);
+  foreach ($_POST as $key => $value) {
+    $connect_data[$key] = sanitizeStr($value);
+  }
+  $client_connect = new Client($connect_data);
+  $client_connect = $client_manager->getClient($client_connect);
+  if($client_connect && password_verify($connect_data['password'], $client_connect->getPassword())) {
+    $_SESSION['client'] = $client_connect;
+    header('Location: home.php');
+  }
 }
 
 $header_form = new Form();
