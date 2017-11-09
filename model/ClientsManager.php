@@ -47,7 +47,7 @@ class ClientsManager {
     return 'This username is already in use';
   }
 
-// gets the client depending on sent id   possible trait
+// gets the client depending on sent id
   public function getClient(Client $client)
   {
     if ($this->clientExists($client)) {
@@ -65,7 +65,7 @@ class ClientsManager {
 
   }
 
-// possible trait
+// checks if the client exists
   public function clientExists(Client $client)
   {
     $query = $this->_db->query('SELECT * FROM clients WHERE user_name = \''.$client->getUser_name().'\'');

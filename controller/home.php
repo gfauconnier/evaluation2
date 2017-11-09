@@ -13,7 +13,7 @@ if(isset($_POST['connect'], $_POST['user_name'], $_POST['password']) && !empty($
   $client_connect = new Client($connect_data);
   $client_connect = $client_manager->getClient($client_connect);
   if($client_connect && password_verify($connect_data['password'], $client_connect->getPassword())) {
-    $_SESSION['client'] = $client_connect;
+    $_SESSION['client'] = $client_connect->getAttributes();
     header('Location: home.php');
   }
 }
@@ -21,8 +21,23 @@ if(isset($_POST['connect'], $_POST['user_name'], $_POST['password']) && !empty($
 $header_form = new Form();
 
 if (isset($_SESSION['client'])) {
+  $connected_client = new Client($_SESSION['client']);
 
   $header_form->addInputSubmit('disconnect', 'btn btn-primary', 'Disconnect');
+
+  $new_account_form = new Form();
+  $new_account_form->addInputText('Account name', 'account_name', '', '', 'Max. 50 characters');
+  $new_account_form->addInputSubmit('create', 'btn btn-primary', 'Create');
+
+  if(isset($_POST['create'], $_POST['account_name']) && !empty($_POST['account_name'])) {
+    $data['account_name'] = sanitizeStr($_POST['account_name']);
+    $data['id_client'] = $connected_client->getId_client();
+    $new_account = new Account($data);
+
+    echo $account_manager->createAccount($new_account);
+  }
+
+  $accounts = $account_manager->getAllAccounts($connected_client);
 
   require '../view/home_v.php';
 
