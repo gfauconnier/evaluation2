@@ -73,7 +73,7 @@ class AccountsManager
         if ($this->accountExists($account)) {
             try {
                 $this->_db->beginTransaction();
-echo $account->getBalance();
+
                 $query = $this->_db->prepare('UPDATE accounts SET balance = :balance WHERE id_account = :id');
                 $query->bindValue(':id', $account->getId_account(), PDO::PARAM_INT);
                 $query->bindValue(':balance', $account->getBalance());

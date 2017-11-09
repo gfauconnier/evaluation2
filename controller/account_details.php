@@ -31,13 +31,12 @@ if (isset($_SESSION['client'])) {
             $owned_accounts = $account_manager->getAllAccounts($connected_client, $current_account->getId_account());
             $transfer_form = new Form();
             $transfer_form->addInputText('Sum', 'sum', '', '', 'Sum to transfer');
-            $transfer_form->addSelect('accounts', $owned_accounts);
+            $transfer_form->addSelect('target_account', $owned_accounts);
             $transfer_form->addInputSubmit('transfer', 'btn btn-primary', 'Transfer');
 
           // deposit
             if(isset($_POST['deposit'], $_POST['sum']) && !empty($_POST['sum'])) {
-              $sum = sanitizeStr($_POST['sum']);
-              $sum = str_replace(',', '.', $sum);
+              $sum = clean_sum($_POST['sum']);
               if($current_account->deposit($sum)) {
                 $account_manager->updateAccount($current_account);
               } else {
@@ -47,8 +46,7 @@ if (isset($_SESSION['client'])) {
 
           // widthdrawal
           if(isset($_POST['withdraw'], $_POST['sum']) && !empty($_POST['sum'])) {
-            $sum = sanitizeStr($_POST['sum']);
-            $sum = str_replace(',', '.', $sum);
+            $sum = clean_sum($_POST['sum']);
             if($current_account->withdrawal($sum)) {
               $account_manager->updateAccount($current_account);
             } else {
@@ -57,10 +55,20 @@ if (isset($_SESSION['client'])) {
           }
 
           // Transfer
-          if(isset($_POST['transfer'], $_POST['sum'], $_POST['accounts']) && !empty($_POST['sum'])) {
-            $sum = sanitizeStr($_POST['sum']);
-            $sum = str_replace(',', '.', $sum); 
-            $target_account = $account_manager->getAccount();
+          if(isset($_POST['transfer'], $_POST['sum'], $_POST['target_account']) && !empty($_POST['sum'])) {
+            $sum = clean_sum($_POST['sum']);
+            $id_target_account['id_account'] = sanitizeStr($_POST['target_account']);
+            $target_account = new Account($id_target_account);
+            $target_account = $account_manager->getAccount($target_account);
+
+            $transfer_data = $current_account->transfer($sum, $target_account);
+            if ($transfer_data) {
+              $account_manager->updateAccount($transfer_data[0]);
+              $account_manager->updateAccount($transfer_data[1]);
+            } else {
+              echo 'An error occured';
+            }
+
           }
 
         } else {
