@@ -89,12 +89,12 @@ class AccountsManager
     // checks if the account exists
     public function accountExists(Account $account)
     {
-      $query = $this->_db->query('SELECT * FROM accounts WHERE id_client = \''.$account->getId_client().'\'');
-      $data = $query->fetch(PDO::FETCH_ASSOC);
-      if ($data) {
-        return true;
-      } else {
-        return false;
-      }
+        $query = $this->_db->query('SELECT * FROM accounts WHERE id_client = \''.$account->getId_client().'\'');
+        $data = $query->fetch(PDO::FETCH_ASSOC);
+        if ($data) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
