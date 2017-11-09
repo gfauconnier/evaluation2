@@ -48,11 +48,11 @@ class Form {
 // adds a select + options
   public function addSelect($name, array $options, $cssclasses='')
   {
-    $this->form .= '<div class=""><label for="'.$name.'" class="col-3">'.ucfirst($name).' : </label><select id="'.$name.'" name="'.$name.'" class="'.$cssclasses.'">';
+    $this->form .= '<div class=""><label for="'.$name.'" class="col-3">'.ucfirst(str_replace('_',' ',$name)).' : </label><select id="'.$name.'" name="'.$name.'" class="'.$cssclasses.'">';
     foreach ($options as $option) {
       $this->form .= '<option value="'.$option->getId_account().'">'.$option->getAccount_name().'</option>';
     }
-    $this->form .= '</select></label></div>';
+    $this->form .= '</select></div>';
   }
 
 // adds a hidden input
