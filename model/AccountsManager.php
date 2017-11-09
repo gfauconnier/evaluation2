@@ -54,24 +54,47 @@ class AccountsManager
     // gets all accounts owned by the Client
     public function getAllAccounts(Client $client)
     {
-      $query = $this->_db->query('SELECT * FROM accounts WHERE id_client = \''.$client->getId_client().'\'');
-      $accounts = $query->fetchAll(PDO::FETCH_ASSOC);
-      // creates a new Account per query answer
-      foreach ($accounts as $key => $account) {
-          $accounts[$key] = new Account($account);
-      }
-      return $accounts;
+        $query = $this->_db->query('SELECT * FROM accounts WHERE id_client = \''.$client->getId_client().'\'');
+        $accounts = $query->fetchAll(PDO::FETCH_ASSOC);
+        // creates a new Account per query answer
+        foreach ($accounts as $key => $account) {
+            $accounts[$key] = new Account($account);
+        }
+        return $accounts;
     }
 
+
+    // Updates the account Balance
+    public function updateAccount(Account $account)
+    {
+        if ($this->accountExists($account)) {
+            try {
+                $this->_db->beginTransaction();
+
+                $query = $this->_db->prepare('UPDATE accounts SET balance = :balance WHERE id = :id');
+                $query->bindValue(':id', $account->getId_account(), PDO::PARAM_INT);
+                $query->bindValue(':balance', $account->getBalance());
+                $query->execute();
+
+                $this->_db->commit();
+
+                return 'Account updated';
+            } catch (Exception $e) {
+                $this->_db->rollback();
+                return 'Error while trying to update account';
+            }
+        }
+    }
+    
     // checks if the account exists
     public function accountExists(Account $account)
     {
-        $query = $this->_db->query('SELECT * FROM accounts WHERE id_client = \''.$account->getId_client().'\'');
-        $data = $query->fetch(PDO::FETCH_ASSOC);
-        if ($data) {
-            return true;
-        } else {
-            return false;
-        }
+      $query = $this->_db->query('SELECT * FROM accounts WHERE id_client = \''.$account->getId_client().'\'');
+      $data = $query->fetch(PDO::FETCH_ASSOC);
+      if ($data) {
+        return true;
+      } else {
+        return false;
+      }
     }
 }
