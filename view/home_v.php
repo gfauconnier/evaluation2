@@ -20,7 +20,7 @@ echo $new_account_form->getForm();
     <?php
       foreach ($accounts as $account) {
         ?>
-        <tr>
+        <tr class="accounts" id="<?php echo $account->getId_account(); ?>" title="Show account details">
           <td><?php echo $account->getId_account(); ?></td>
           <td><?php echo $account->getAccount_name(); ?></td>
           <td><?php echo $account->getBalance(); ?></td>

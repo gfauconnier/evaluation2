@@ -7,6 +7,7 @@ class Account {
   protected $balance;
 
   use Hydrate;
+  use GetAttributes;
 
   // Contructor
     public function __construct(array $data)
@@ -105,6 +106,42 @@ class Account {
       if(is_numeric($balance)) {
         $this->balance = $balance;
       }
+    }
+
+    // METHODS
+    // Changes the balance (+) depending on sent value
+    public function deposit($value)
+    {
+      if (is_numeric($value)) {
+        $value += $this->balance;
+        $this->setBalance($value);
+        return $this;
+      }
+      return false;
+    }
+
+    // Changes the balance (-) depending on sent value
+    public function withdrawal($value)
+    {
+      if (is_numeric($value)) {
+        $value = $this->balance - $value;
+        $this->setBalance($value);
+        if($this->balance >= -300) {
+          return $this;
+        }
+      }
+      return false;
+    }
+
+    // makes a widthdrawal on current account and a deposit on sent account
+    public function transfer($value, Account $target_account)
+    {
+      if (is_numeric($value) && ($this->balance - $value)>= -300) {
+        $transferred[] = $this->withdrawal($value);
+        $transferred[] = $target_account->deposit($value);
+        return $transferred;
+      }
+      return false;
     }
 
   }

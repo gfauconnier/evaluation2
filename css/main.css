@@ -1,0 +1,33 @@
+/* HEADER */
+header {
+  background-color: grey;
+
+}
+
+
+/* TABLE */
+#accounts_table {
+  margin: auto;
+  width: 80vw;
+}
+
+#accounts_table thead tr {
+  background-color: grey;
+}
+
+#accounts_table tbody tr {
+  cursor: pointer;
+}
+
+#accounts_table tbody tr:nth-child(even) {
+  background-color: #D3D3D3;
+}
+
+#accounts_table tbody tr:hover {
+  background-color: #B2B2B2;
+}
+
+table tr td {
+  min-width: 15vw;
+  padding: 2px;
+}
