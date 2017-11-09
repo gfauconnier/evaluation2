@@ -7,7 +7,7 @@ require 'template/header.php';
 echo $new_account_form->getForm();
 ?>
 
-<table>
+<table id="accounts_table">
   <thead>
     <tr>
       <th>Account Id</th>

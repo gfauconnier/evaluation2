@@ -1,0 +1,1 @@
+$('#accounts_table').stacktable();

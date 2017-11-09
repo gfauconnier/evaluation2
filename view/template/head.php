@@ -11,6 +11,7 @@
   <link rel="icon" href="favicon.png">
   <link rel="stylesheet" href="../css/bootstrap.css">
   <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../css/stacktable.css">
   <link rel="stylesheet" href="../css/main.css">
 </head>
 
