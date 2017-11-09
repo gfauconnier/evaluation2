@@ -1,22 +1,22 @@
 <?php
 
-class Client {
+class Client
+{
+    protected $id_client;
+    protected $f_name;
+    protected $l_name;
+    protected $user_name;
+    protected $password;
 
-  protected $id_client;
-  protected $f_name;
-  protected $l_name;
-  protected $user_name;
-  protected $password;
+    use Hydrate;
 
-use Hydrate;
+    // Contructor
+    public function __construct(array $data)
+    {
+        $this->hydrate($data);
+    }
 
-// Contructor
-  public function __construct(array $data)
-  {
-    $this->hydrate($data);
-  }
-
-// GETTERS AND SETTERS
+    // GETTERS AND SETTERS
     /**
      * Get the value of Id Client
      *
@@ -34,10 +34,10 @@ use Hydrate;
     */
     public function setId_client($id_client)
     {
-      $id_client = (int) $id_client;
-      if (is_int($id_client) && $id_client > 0) {
-        $this->id_client = $id_client;
-      }
+        $id_client = (int) $id_client;
+        if (is_int($id_client) && $id_client > 0) {
+            $this->id_client = $id_client;
+        }
     }
 
     /**
@@ -57,9 +57,9 @@ use Hydrate;
     */
     public function setF_name($f_name)
     {
-      if(strlen($f_name) <= 30 && strlen($f_name) > 0 && preg_match('#^[a-zA-Z]*$#', $f_name)) {
-        $this->f_name = $f_name;
-      }
+        if (strlen($f_name) <= 30 && strlen($f_name) > 0 && preg_match('#^[a-zA-Z]*$#', $f_name)) {
+            $this->f_name = $f_name;
+        }
     }
 
     /**
@@ -79,9 +79,9 @@ use Hydrate;
     */
     public function setL_name($l_name)
     {
-      if(strlen($l_name) <= 30 && strlen($l_name) > 0 && preg_match('#^[a-zA-Z]*$#', $l_name)) {
-        $this->l_name = $l_name;
-      }
+        if (strlen($l_name) <= 30 && strlen($l_name) > 0 && preg_match('#^[a-zA-Z]*$#', $l_name)) {
+            $this->l_name = $l_name;
+        }
     }
 
     /**
@@ -101,9 +101,9 @@ use Hydrate;
     */
     public function setUser_name($user_name)
     {
-      if(strlen($user_name) <= 20 && strlen($user_name) > 0 && preg_match('#^[a-zA-Z0-9]*$#', $user_name)) {
-        $this->user_name = $user_name;
-      }
+        if (strlen($user_name) <= 20 && strlen($user_name) > 0 && preg_match('#^[a-zA-Z0-9]*$#', $user_name)) {
+            $this->user_name = $user_name;
+        }
     }
 
     /**
@@ -123,9 +123,18 @@ use Hydrate;
     */
     public function setPassword($password)
     {
-      if(strlen($password) <= 100 && strlen($password) > 0) {
-        $this->password = $password;
-      }
+        if (strlen($password) <= 100 && strlen($password) > 0) {
+            $this->password = $password;
+        }
     }
 
-  }
+    // METHODS
+    // Returns an array containing all the class attributes
+    public function getAttributes()
+    {
+        foreach ($this as $key => $value) {
+            $data[$key] = $value;
+        }
+        return $data;
+    }
+}
