@@ -3,8 +3,11 @@
 require 'template/head.php';
 require 'template/header.php';
 
-
-echo $new_account_form->getForm();
+if(isset($message)) {
+  foreach ($message as $value) {
+    echo '<p>'.$value.'</p>';
+  }
+}
 ?>
 
 <table id="accounts_table">
@@ -24,7 +27,13 @@ echo $new_account_form->getForm();
           <td><?php echo $account->getId_account(); ?></td>
           <td><?php echo $account->getAccount_name(); ?></td>
           <td class="balance"><?php echo $account->getBalance(); ?></td>
-          <td></td>
+          <td class="acc_btn"><a href="account_details.php?id_account=<?php echo $account->getId_account(); ?>" class="btn btn-primary" title="Account details"><i class="material-icons">search</i></a>
+            <?php
+            $delete_form = new Form();
+            $delete_form->addHidden('id_account', $account->getId_account());
+            $delete_form->addInputSubmit('delete', 'btn btn-danger', '<i class="material-icons">delete_sweep</i>');
+            echo $delete_form->getForm();
+          ?></td>
         </tr>
         <?php
       }

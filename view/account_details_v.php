@@ -3,10 +3,16 @@
 require 'template/head.php';
 require 'template/header.php';
 
+if(isset($message)) {
+  foreach ($message as $value) {
+    echo '<p>'.$value.'</p>';
+  }
+}
 ?>
+
 <div class="owned_accounts">
-  <select class="owned_accounts" name="owned_accounts">
-    <option value="desc">Change account</option>
+  <select class="owned_accounts" name="owned_accounts" id="own_accounts">
+    <option value="0">Change account</option>
     <?php
     foreach ($owned_accounts as $account) { ?>
       <option value="<?php echo $account->getId_account(); ?>" id="<?php echo $account->getId_account(); ?>"><?php echo $account->getAccount_name(); ?></option>
@@ -17,6 +23,7 @@ require 'template/header.php';
 <div class="account_details">
   <p>Account id : <?php echo $current_account->getId_account(); ?></p>
   <p>Account balance : <span id="test" class="balance"><?php echo $current_account->getBalance(); ?></span></p>
+  <?php echo $delete_form->getForm(); ?>
 </div>
 
 <div class="col-12 col-md-10 mx-auto">

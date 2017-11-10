@@ -13,8 +13,12 @@ $('#accountTabs a').on('click', function(e) {
 })
 
 // changes the displayed account on select change
-$('.owned_accounts').change(function() {
-  window.location.href = 'account_details.php?id_account=' + this.value[0];
+$('#own_accounts').change(function() {
+  if (this.value != 0) {
+    // var val = $(this).val()
+    // console.log(val)
+   window.location.href = 'account_details.php?id_account=' + $(this).val();
+  }
 })
 
 // changes the color of the text depending on balance value

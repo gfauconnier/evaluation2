@@ -18,26 +18,34 @@ if(isset($_POST['connect'], $_POST['user_name'], $_POST['password']) && !empty($
   }
 }
 
-$header_form = new Form();
+$header_form = new Form('');
+
+$new_account_form = new Form();
+$new_account_form->addInputText('Account name', 'account_name', '', '', 'Max. 50 characters');
+$new_account_form->addInputSubmit('create', 'btn btn-primary', 'Create');
 
 if (isset($_SESSION['client'])) {
   $connected_client = new Client($_SESSION['client']);
 
   $header_form->addInputSubmit('disconnect', 'btn btn-primary', 'Disconnect');
 
-  $new_account_form = new Form();
-  $new_account_form->addInputText('Account name', 'account_name', '', '', 'Max. 50 characters');
-  $new_account_form->addInputSubmit('create', 'btn btn-primary', 'Create');
 
   if(isset($_POST['create'], $_POST['account_name']) && !empty($_POST['account_name'])) {
     $data['account_name'] = sanitizeStr($_POST['account_name']);
     $data['id_client'] = $connected_client->getId_client();
     $new_account = new Account($data);
 
-    echo $account_manager->createAccount($new_account);
+    $message[] = $account_manager->createAccount($new_account);
+  }
+
+  if(isset($_POST['delete'], $_POST['id_account'])) {
+    $data['id_account'] = sanitizeStr($_POST['id_account']);
+    $todelete_account = new Account($data);
+    $message[] = $account_manager->deleteAccount($todelete_account);
   }
 
   $accounts = $account_manager->getAllAccounts($connected_client);
+
 
   require '../view/home_v.php';
 
@@ -67,7 +75,7 @@ if (isset($_SESSION['client'])) {
     }
 
 
-    echo $client_manager->createClient($client);
+    $message[] =  $client_manager->createClient($client);
 
   }
 

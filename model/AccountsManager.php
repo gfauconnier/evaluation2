@@ -66,7 +66,6 @@ class AccountsManager
         return $accounts;
     }
 
-
     // Updates the account Balance
     public function updateAccount(Account $account)
     {
@@ -85,6 +84,28 @@ class AccountsManager
             } catch (Exception $e) {
                 $this->_db->rollback();
                 return 'Error while trying to update account';
+            }
+        }
+    }
+
+    // Updates the account Balance
+    public function deleteAccount(Account $account)
+    {
+        if ($this->accountExists($account)) {
+            try {
+                $this->_db->beginTransaction();
+
+                $query = $this->_db->prepare('DELETE FROM accounts WHERE id_account = :id');
+                $query->bindValue(':id', $account->getId_account(), PDO::PARAM_INT);
+
+                $query->execute();
+
+                $this->_db->commit();
+
+                return 'Account deleted';
+            } catch (Exception $e) {
+                $this->_db->rollback();
+                return 'Error while trying to delete account';
             }
         }
     }
