@@ -3,6 +3,18 @@
 require 'template/head.php';
 require 'template/header.php';
 
+?>
+<div class="owned_accounts">
+  <select class="owned_accounts" name="owned_accounts">
+    <option value="desc">Change account</option>
+    <?php
+    foreach ($owned_accounts as $account) { ?>
+      <option value="<?php echo $account->getId_account(); ?>" id="<?php echo $account->getId_account(); ?>"><?php echo $account->getAccount_name(); ?></option>
+  <?php  } ?>
+  </select>
+</div>
+
+<?php
 $account = $current_account->getAttributes();
 foreach ($account as $key => $value) {
   echo $key.' - '.$value.'<br>';
