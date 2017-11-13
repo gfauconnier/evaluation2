@@ -1,11 +1,11 @@
 <header class="container-fluid">
   <div class="row header_div">
-    <a href="home.php" class="btn btn-primary">Home</a>
+    <a href="home.php" class="btn btn-primary header_btn">Home</a>
     <?php
     echo $header_form->getForm();
     if (isset($_SESSION['client'])) {
     ?>
-    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseNewAccount" aria-expanded="false" aria-controls="collapseNewAccount">
+    <button class="btn btn-primary header_btn" type="button" data-toggle="collapse" data-target="#collapseNewAccount" aria-expanded="false" aria-controls="collapseNewAccount">
       New Account
     </button>
   <?php } ?>

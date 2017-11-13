@@ -13,18 +13,24 @@ header, header form, .delete_form, .owned_accounts, .details {
 }
 
 /* HEADER */
+
 header, header form, .delete_form {
     justify-content: center;
 }
 
 header {
-  height: 10vh;
+  /*height: 15vh;*/
   min-height: 70px;
   background-color: grey;
 }
 
-.header_div {
+header .header_div {
+  flex-direction: column;
   margin: auto;
+}
+
+.header_btn {
+  margin: 3px auto;
 }
 
 header form {
@@ -97,6 +103,7 @@ div.details {
 table.account_details {
   border: 1px solid lightgrey;
   border-radius: 3px;
+  margin: 0 auto 20px auto;
 }
 
 table.account_details th, table.account_details td {
@@ -113,7 +120,17 @@ p.details {
   font-weight: bold;
 }
 
+ul li a {
+  text-align: center;
+}
+
 @media (min-width: 576px) {
+
+  /* HEADER */
+  header .header_div {
+    flex-direction: row;
+  }
+
   /* DETAILS */
   /* DETAILS TABLE */
   .owned_accounts {

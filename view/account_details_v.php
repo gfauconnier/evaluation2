@@ -11,7 +11,7 @@ if(isset($message)) {
 ?>
 
 <div class="owned_accounts">
-  <select class="owned_accounts" name="owned_accounts" id="own_accounts">
+  <select class="owned_accounts" name="owned_accounts" id="own_accounts" title="Select another account">
     <option value="0">Change account</option>
     <?php
     foreach ($owned_accounts as $account) { ?>
@@ -25,7 +25,7 @@ if(isset($message)) {
 
   <div class="row details">
 
-    <table class="account_details col-11 col-md-6">
+    <table class="account_details col-11 col-md-5">
       <tr>
         <th>Account informations : </th>
       </tr>
@@ -46,16 +46,16 @@ if(isset($message)) {
     <div class="col-12 col-md-6 mx-auto">
 
       <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-        <li class="nav-item">
-          <a class="nav-link active" id="pills-movements-tab" data-toggle="pill" href="#nav-movements" role="tab" aria-controls="nav-movements" aria-selected="true">Movements</a>
+        <li class="nav-item col-12 col-md-6 col-lg-3">
+          <a class="nav-link active" id="pills-movements-tab" data-toggle="pill" href="#nav-movements" role="tab" aria-controls="nav-movements" aria-selected="true">Movement</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item col-12 col-md-6 col-lg-3">
           <a class="nav-link" id="pills-deposit-tab" data-toggle="pill" href="#nav-deposit" role="tab" aria-controls="nav-deposit" aria-selected="true">Deposit</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item col-12 col-md-6 col-lg-3">
           <a class="nav-link" id="pills-withdraw-tab" data-toggle="pill" href="#nav-withdraw" role="tab" aria-controls="nav-withdraw" aria-selected="false">Withdraw</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item col-12 col-md-6 col-lg-3">
           <a class="nav-link" id="pills-transfer-tab" data-toggle="pill" href="#nav-transfer" role="tab" aria-controls="nav-transfer" aria-selected="false">Transfer</a>
         </li>
       </ul>

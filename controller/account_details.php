@@ -17,7 +17,7 @@ if (isset($_SESSION['client'])) {
 
         if ($current_account) {
             $header_form = new Form();
-            $header_form->addInputSubmit('disconnect', 'btn btn-primary', 'Disconnect');
+            $header_form->addInputSubmit('disconnect', 'btn btn-primary header_btn', 'Disconnect');
 
             if (isset($_POST['create'], $_POST['account_name']) && !empty($_POST['account_name'])) {
                 $data['account_name'] = sanitizeStr($_POST['account_name']);
