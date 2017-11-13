@@ -14,6 +14,7 @@ if (isset($_SESSION['client'])) {
         $current_account = new Account($id_account);
         $current_account = $account_manager->getAccount($current_account);
 
+
         if ($current_account) {
             $header_form = new Form();
             $header_form->addInputSubmit('disconnect', 'btn btn-primary', 'Disconnect');
@@ -57,6 +58,8 @@ if (isset($_SESSION['client'])) {
                 $sum = clean_sum($_POST['sum']);
                 if ($current_account->deposit($sum)) {
                     $account_manager->updateAccount($current_account);
+                    $movement = addMovement($current_account->getId_account(), $sum);
+                    $movement_manager->createMovement($movement);
                 } else {
                     $message[] = 'An error occured';
                 }
@@ -67,6 +70,9 @@ if (isset($_SESSION['client'])) {
                 $sum = clean_sum($_POST['sum']);
                 if ($current_account->withdrawal($sum)) {
                     $account_manager->updateAccount($current_account);
+                    $sum = 0 - $sum;
+                    $movement = addMovement($current_account->getId_account(), $sum);
+                    $movement_manager->createMovement($movement);
                 } else {
                     $message[] = 'An error occured';
                 }
@@ -82,7 +88,12 @@ if (isset($_SESSION['client'])) {
                 $transfer_data = $current_account->transfer($sum, $target_account);
                 if ($transfer_data) {
                     $account_manager->updateAccount($transfer_data[0]);
+                    $movement = addMovement($transfer_data[0]->getId_account(), $sum);
+                    $movement_manager->createMovement($movement);
                     $account_manager->updateAccount($transfer_data[1]);
+                    $sum = 0 - $sum;
+                    $movement = addMovement($transfer_data[1]->getId_account(), $sum);
+                    $movement_manager->createMovement($movement);
                 } else {
                     $message[] = 'An error occured';
                 }
@@ -94,6 +105,9 @@ if (isset($_SESSION['client'])) {
                 $message[] = $account_manager->deleteAccount($todelete_account);
                 header('Location: '.$_SERVER['PHP_SELF']);
             }
+
+
+            $account_movements = $movement_manager->getMovements($current_account);
         } else {
             header('Location: home.php');
         }

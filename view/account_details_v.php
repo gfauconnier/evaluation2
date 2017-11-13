@@ -44,9 +44,12 @@ if(isset($message)) {
 
     <div class="col-12 col-md-6 mx-auto">
 
-      <ul class="nav nav-pills mb-3 d-block d-sm-none" id="pills-tab" role="tablist">
+      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" id="pills-deposit-tab" data-toggle="pill" href="#nav-deposit" role="tab" aria-controls="nav-deposit" aria-selected="true">Deposit</a>
+          <a class="nav-link active" id="pills-movements-tab" data-toggle="pill" href="#nav-movements" role="tab" aria-controls="nav-movements" aria-selected="true">Movements</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="pills-deposit-tab" data-toggle="pill" href="#nav-deposit" role="tab" aria-controls="nav-deposit" aria-selected="true">Deposit</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" id="pills-withdraw-tab" data-toggle="pill" href="#nav-withdraw" role="tab" aria-controls="nav-withdraw" aria-selected="false">Withdraw</a>
@@ -56,14 +59,17 @@ if(isset($message)) {
         </li>
       </ul>
 
-      <nav class="nav nav-tabs d-none d-sm-inline-flex" id="accountTabs" role="tablist">
-        <a class="nav-item nav-link active" id="nav-deposit-tab" data-toggle="tab" href="#nav-deposit" role="tab" aria-controls="nav-deposit" aria-selected="true">Deposit</a>
-        <a class="nav-item nav-link" id="nav-withdraw-tab" data-toggle="tab" href="#nav-withdraw" role="tab" aria-controls="nav-withdraw" aria-selected="false">Withdrawal</a>
-        <a class="nav-item nav-link" id="nav-transfer-tab" data-toggle="tab" href="#nav-transfer" role="tab" aria-controls="nav-transfer" aria-selected="false">Transfer</a>
-      </nav>
-
       <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="nav-deposit" role="tabpanel" aria-labelledby="nav-deposit-tab">
+        <div class="tab-pane fade show active" id="nav-movements" role="tabpanel" aria-labelledby="nav-movements-tab">
+          <p class="details">Last Movements</p>
+          <table>
+            <tr>
+              <th>Date</th>
+              <th>Movement</th>
+            </tr>
+          </table>
+        </div>
+        <div class="tab-pane fade" id="nav-deposit" role="tabpanel" aria-labelledby="nav-deposit-tab">
           <p class="details">Deposit</p>
           <?php echo $deposit_form->getForm(); ?>
         </div>
