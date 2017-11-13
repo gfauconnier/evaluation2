@@ -20,6 +20,7 @@ if(isset($message)) {
   </select>
   <?php echo $delete_form->getForm(); ?>
 </div>
+<hr>
 <div class="container">
 
   <div class="row details">
@@ -62,11 +63,28 @@ if(isset($message)) {
       <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade show active" id="nav-movements" role="tabpanel" aria-labelledby="nav-movements-tab">
           <p class="details">Last Movements</p>
-          <table>
-            <tr>
-              <th>Date</th>
-              <th>Movement</th>
-            </tr>
+          <table id="movements_table" class="col-12">
+            <thead>
+              <tr>
+                <th>Movement</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              foreach ($account_movements as $account_movement) {
+                ?>
+                <tr>
+                  <td class="balance"><?php echo $account_movement->getMovement_value(); ?></td>
+                  <td><?php
+                  $date = date("d-m-Y H:i:s", strtotime($account_movement->getMovement_date()));
+                  echo $date;?>
+                </td>
+              </tr>
+              <?php
+              }
+              ?>
+            </tbody>
           </table>
         </div>
         <div class="tab-pane fade" id="nav-deposit" role="tabpanel" aria-labelledby="nav-deposit-tab">

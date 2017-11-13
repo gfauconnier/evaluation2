@@ -88,10 +88,11 @@ if (isset($_SESSION['client'])) {
                 $transfer_data = $current_account->transfer($sum, $target_account);
                 if ($transfer_data) {
                     $account_manager->updateAccount($transfer_data[0]);
+                    $sum = 0 - $sum;
                     $movement = addMovement($transfer_data[0]->getId_account(), $sum);
                     $movement_manager->createMovement($movement);
                     $account_manager->updateAccount($transfer_data[1]);
-                    $sum = 0 - $sum;
+                    $sum = abs($sum);
                     $movement = addMovement($transfer_data[1]->getId_account(), $sum);
                     $movement_manager->createMovement($movement);
                 } else {
