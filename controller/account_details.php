@@ -47,9 +47,9 @@ if (isset($_SESSION['client'])) {
             $transfer_form->addInputSubmit('transfer', 'btn btn-primary', 'Transfer');
 
             // creates a delete form
-            $delete_form = new Form();
+            $delete_form = new Form('delete_form');
             $delete_form->addHidden('id_account', $current_account->getId_account());
-            $delete_form->addInputSubmit('delete', 'btn btn-danger', 'Delete');
+            $delete_form->addInputSubmit('delete', 'btn btn-danger', 'Delete this account');
 
 
             // deposit

@@ -1,26 +1,4 @@
-/* HEADER */
-header, header form {
-    display: flex;
-    flex-flow: row wrap;
-    align-items: baseline;
-    justify-content: center;
-}
-
-header {
-  background-color: grey;
-}
-
-header form {
-  margin: auto 10px;
-}
-
-/* TABS */
-.tab-content {
-  border-left: 1px solid lightgrey;
-  border-right: 1px solid lightgrey;
-  border-bottom: 1px solid lightgrey;
-}
-
+/* GENERAL */
 .green {
   color: green;
 }
@@ -28,9 +6,40 @@ header form {
   color: red;
 }
 
+header, header form, .delete_form, .owned_accounts, .details {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: baseline;
+}
+
+/* HEADER */
+header, header form, .delete_form {
+    justify-content: center;
+}
+
+header {
+  height: 10vh;
+  min-height: 70px;
+  background-color: grey;
+}
+
+.header_div {
+  margin: auto;
+}
+
+header form {
+  margin: auto 10px;
+}
+
+/* HOME */
+/* GREET */
+.greet {
+  margin-left: 20px;
+}
+
 /* TABLE */
 #accounts_table {
-  margin: auto;
+  margin: 20px auto;
   width: 80vw;
 }
 
@@ -50,6 +59,10 @@ header form {
   background-color: #B2B2B2;
 }
 
+#accounts_table td, #accounts_table th {
+  text-align: center;
+}
+
 table tr td {
   min-width: 15vw;
   padding: 2px;
@@ -62,4 +75,43 @@ td.acc_btn {
 
 td.acc_btn a, td.acc_btn form button {
   margin: 0 3px;
+}
+
+/* DETAILS */
+/* DETAILS TABLE */
+.owned_accounts {
+  width: 80vw;
+  justify-content: space-around;
+  margin: 10px auto ;
+}
+
+table.account_details {
+  margin: auto;
+}
+
+.delete_form {
+  margin-top: 5px;
+  width: 30vw;
+}
+
+div.details {
+  align-items: flex-end;
+}
+
+/* TABS */
+.tab-content {
+  padding: 10px;
+  border: 1px solid lightgrey;
+}
+
+p.details {
+  font-weight: bold;
+}
+
+@media (min-width: 576px) {
+  /* DETAILS */
+  /* DETAILS TABLE */
+  .owned_accounts {
+    flex-wrap: nowrap;
+  }
 }

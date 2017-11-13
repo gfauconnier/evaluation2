@@ -1,5 +1,5 @@
 <header class="container-fluid">
-  <div class="row">
+  <div class="row header_div">
     <a href="home.php" class="btn btn-primary">Home</a>
     <?php
     echo $header_form->getForm();
