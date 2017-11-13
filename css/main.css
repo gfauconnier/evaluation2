@@ -43,7 +43,7 @@ header form {
   width: 80vw;
 }
 
-#accounts_table thead tr {
+#accounts_table thead tr, #movements_table thead tr {
   background-color: grey;
 }
 
@@ -51,7 +51,7 @@ header form {
   cursor: pointer;
 }
 
-#accounts_table tbody tr:nth-child(even) {
+#accounts_table tbody tr:nth-child(even), #movements_table tbody tr:nth-child(even) {
   background-color: #D3D3D3;
 }
 
@@ -85,17 +85,22 @@ td.acc_btn a, td.acc_btn form button {
   margin: 10px auto ;
 }
 
-table.account_details {
-  margin: auto;
-}
-
 .delete_form {
   margin-top: 5px;
   width: 30vw;
 }
 
 div.details {
-  align-items: flex-end;
+  align-items: flex-start;
+}
+
+table.account_details {
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+}
+
+table.account_details th, table.account_details td {
+  padding: 1px 5px;
 }
 
 /* TABS */
