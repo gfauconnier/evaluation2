@@ -1,4 +1,5 @@
 <header class="container-fluid">
+  <h1>Banque</h1>
   <div class="row header_div">
     <a href="home.php" class="btn btn-primary header_btn">Home</a>
     <?php

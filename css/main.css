@@ -38,6 +38,17 @@ header form {
 }
 
 /* HOME */
+/* NEW CLIENT */
+h2.new_client {
+  padding: 10px;
+}
+
+div.new_client {
+  display: flex;
+  justify-content: center;
+}
+
+
 /* GREET */
 .greet {
   margin-left: 20px;

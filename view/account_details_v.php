@@ -9,6 +9,7 @@ if(isset($message)) {
   }
 }
 ?>
+<main>
 
 <div class="owned_accounts">
   <select class="owned_accounts" name="owned_accounts" id="own_accounts" title="Select another account">
@@ -106,6 +107,7 @@ if(isset($message)) {
   </div>
 
 </div>
+</main>
 
 
 <?php

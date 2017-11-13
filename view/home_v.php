@@ -9,6 +9,8 @@ if(isset($message)) {
   }
 }
 ?>
+<main>
+
 <div class="greet">
   <h2>Hello <?php echo $connected_client->getF_name() .' '.$connected_client->getL_name(); ?></h2>
   <h3>Manage your accounts</h3>
@@ -44,6 +46,7 @@ if(isset($message)) {
      ?>
   </tbody>
 </table>
+</main>
 
 <?php
 require 'template/foot.php';
