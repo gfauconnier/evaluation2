@@ -15,8 +15,6 @@ $('#accountTabs a').on('click', function(e) {
 // changes the displayed account on select change
 $('#own_accounts').change(function() {
   if (this.value != 0) {
-    // var val = $(this).val()
-    // console.log(val)
    window.location.href = 'account_details.php?id_account=' + $(this).val();
   }
 })
