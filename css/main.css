@@ -1,0 +1,150 @@
+/* GENERAL */
+.green {
+  color: green;
+}
+.red {
+  color: red;
+}
+
+header, header form, .delete_form, .owned_accounts, .details {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: baseline;
+}
+
+/* HEADER */
+
+header, header form, .delete_form {
+    justify-content: center;
+}
+
+header {
+  /*height: 15vh;*/
+  min-height: 70px;
+  background-color: grey;
+}
+
+header .header_div {
+  flex-direction: column;
+  margin: auto;
+}
+
+.header_btn {
+  margin: 3px auto;
+}
+
+header form {
+  margin: auto 10px;
+}
+
+/* HOME */
+/* NEW CLIENT */
+h2.new_client {
+  padding: 10px;
+}
+
+div.new_client {
+  display: flex;
+  justify-content: center;
+}
+
+
+/* GREET */
+.greet {
+  margin-left: 20px;
+}
+
+/* TABLE */
+#accounts_table {
+  margin: 20px auto;
+  width: 80vw;
+}
+
+#accounts_table thead tr, #movements_table thead tr {
+  background-color: grey;
+}
+
+#accounts_table tbody tr {
+  cursor: pointer;
+}
+
+#accounts_table tbody tr:nth-child(even), #movements_table tbody tr:nth-child(even) {
+  background-color: #D3D3D3;
+}
+
+#accounts_table tbody tr:hover {
+  background-color: #B2B2B2;
+}
+
+#accounts_table td, #accounts_table th {
+  text-align: center;
+}
+
+table tr td {
+  min-width: 15vw;
+  padding: 2px;
+}
+
+td.acc_btn {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+td.acc_btn a, td.acc_btn form button {
+  margin: 0 3px;
+}
+
+/* DETAILS */
+/* DETAILS TABLE */
+.owned_accounts {
+  width: 80vw;
+  justify-content: space-around;
+  margin: 10px auto ;
+}
+
+.delete_form {
+  margin-top: 5px;
+  width: 30vw;
+}
+
+div.details {
+  align-items: flex-start;
+}
+
+table.account_details {
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+  margin: 0 auto 20px auto;
+}
+
+table.account_details th, table.account_details td {
+  padding: 1px 5px;
+}
+
+/* TABS */
+.tab-content {
+  padding: 10px;
+  border: 1px solid lightgrey;
+}
+
+p.details {
+  font-weight: bold;
+}
+
+ul li a {
+  text-align: center;
+}
+
+@media (min-width: 576px) {
+
+  /* HEADER */
+  header .header_div {
+    flex-direction: row;
+  }
+
+  /* DETAILS */
+  /* DETAILS TABLE */
+  .owned_accounts {
+    flex-wrap: nowrap;
+  }
+}
